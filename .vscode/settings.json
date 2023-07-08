@@ -6,5 +6,8 @@
             "binaryPath": "d:\\Codigos\\openglGLadGLFW\\main.exe",
             "binaryArgs": []
         }
-    ]
+    ],
+    "files.associations": {
+        "vector": "cpp"
+    }
 }

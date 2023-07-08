@@ -46,47 +46,47 @@ bool firstMouse = true;
     
     
     Vertex verticesTri[] = {
-    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-     0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 0.0f,
+     0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
+     0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
+    -0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
 
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+    -0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
+     0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
+    -0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
 
-    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-    -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
 
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
+     0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
+     0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
+     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
 
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
+     0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
+     0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
+    -0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
 
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+    -0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
+     0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f
     };
     float coordTriangle[] = {
             // positions      //coordenadas
@@ -147,7 +147,7 @@ bool firstMouse = true;
         30,31,32,
         33,34,35
     };
-
+    /*
     //unsigned int vtxBuffer = 0;
     glGenBuffers(1, &VArray);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, VArray);
@@ -158,31 +158,31 @@ bool firstMouse = true;
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(verticesTri), verticesTri, GL_STATIC_DRAW);
 
-    auto position = prog.getAttrib("position");//glGetAttribLocation(prog.ID, "position");
-    glVertexAttribPointer(position, 
-                            3,
-                            GL_FLOAT,
-                            false, 
-                            5*sizeof(float), 
-                            (void*)0);
-    glEnableVertexAttribArray(position);
+    //auto position = prog.getAttrib("position");//glGetAttribLocation(prog.ID, "position");
+    glVertexAttribPointer(0, 
+                          3,
+                          GL_FLOAT,
+                          false, 
+                          9*sizeof(float), 
+                          (void*)0);
+    glEnableVertexAttribArray(0);
 
 
     auto texCoord = prog.getAttrib("texCoord");//glGetAttribLocation(prog.ID, "color");
-    glVertexAttribPointer(texCoord, 
-                            2,
-                            GL_FLOAT,
-                            false, 
-                            5*sizeof(float), 
-                            (void*)(3*sizeof(float)));
-    glEnableVertexAttribArray(texCoord);
+    glVertexAttribPointer(2, 
+                          2,
+                          GL_FLOAT,
+                          false, 
+                          9*sizeof(float), 
+                          (void*)(7*sizeof(float)));
+    glEnableVertexAttribArray(2);
 
 
     prog.use();
     prog.setInt("texture_1", 0);
     prog.setFloat("uPixelSize", 5.0f);
     prog.set2dVec("uTextureSize", (float)256, (float)256);
-
+    */
 
     //tex.bind(GL_TEXTURE1, GL_TEXTURE_2D);
     //texture_0.bind(0,GL_TEXTURE_2D); 
@@ -197,36 +197,7 @@ bool firstMouse = true;
 
 
 void draw(Shader prog, GLFWwindow* window){
-    // input
-    // -----
-    prog.use();
-
-    float currentFrame = glfwGetTime();
-    deltaTime = currentFrame - lastFrame;
-    lastFrame = currentFrame; 
-
-    //inputs
-    processInput(window);
-
-    // pass projection matrix to shader (note that in this case it could change every frame)
-    glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-    prog.setMat4("projection", projection);
-
-        // camera/view transformation
-    glm::mat4 view = camera.GetViewMatrix();
-    prog.setMat4("view", view);
-    
-    //glUniform4f(vertexColorLoc, 0.0f, greenValue, 0.0f, 1.0f);
-    // render
-    // ------
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, (void*)0);
-    //glDrawArrays(GL_TRIANGLES, 0, 36);
-    // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-    // -------------------------------------------------------------------------------
-    glfwSwapBuffers(window);
-    glfwPollEvents();
+   
 }
 
 
@@ -257,19 +228,116 @@ int main()
     //inicializacoes finalizadas
 
     Shader prog("shaders/vertexShader.glsl", "shaders/fragmentShader.glsl");  
+    
 
     Texture textt("Textures/wall.jpg", GL_TEXTURE_2D);
     textt.bind(GL_TEXTURE0, GL_TEXTURE_2D); 
-    /*unsigned int VBO = */configScene(prog);
+
+    //Inicia a mesh
+    Vertex verticesTri[] = {
+    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 0.0f,
+     0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
+     0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
+    -0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
+
+    -0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
+     0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
+    -0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
+
+    -0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
+
+     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
+     0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
+     0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
+     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
+
+    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
+     0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
+     0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
+    -0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
+
+    -0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
+     0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f
+    };
+    unsigned int verticesInd[] = {
+        0,1,2,
+        3,4,5,
+        6,7,8,
+        9,10,11,
+        12,13,14,
+        15,16,17,
+        18,19,20,
+        21,22,23,
+        24,25,26,
+        27,28,29,
+        30,31,32,
+        33,34,35
+    };
+    unsigned nrOfVertices = sizeof(verticesTri) / sizeof(Vertex);
+    unsigned nrOfIndices = sizeof(verticesInd) / sizeof(unsigned int);
+
+    Mesh teste(verticesTri, nrOfVertices, verticesInd, nrOfIndices);
+    /////////////////
+    configScene(prog);
 
     // render loop
     // -----------
+    //draw
     while (!glfwWindowShouldClose(window))
     {
-        draw(prog, window);
+        //draw(prog, window);
+        // -----
+        prog.use();
+
+        float currentFrame = glfwGetTime();
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame; 
+
+        //inputs
+        processInput(window);
+
+        // pass projection matrix to shader (note that in this case it could change every frame)
+        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        prog.setMat4("projection", projection);
+
+            // camera/view transformation
+        glm::mat4 view = camera.GetViewMatrix();
+        prog.setMat4("view", view);
+        
+        //glUniform4f(vertexColorLoc, 0.0f, greenValue, 0.0f, 1.0f);
+        // render
+        // ------
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        teste.Render(&prog, 0);
+        //glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, (void*)0);
+        //glDrawArrays(GL_TRIANGLES, 0, 36);
+        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
+        // -------------------------------------------------------------------------------
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+
     }
     glDeleteBuffers(1, &VBO);
     textt.Apagar();
+    teste.~Mesh();
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------
     glfwTerminate();

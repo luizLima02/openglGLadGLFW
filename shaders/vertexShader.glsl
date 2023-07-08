@@ -1,8 +1,8 @@
 #version 430 compatibility
 
-attribute vec4 position;
-attribute vec4 color;
-attribute vec2 texCoord;
+layout (location = 0) in vec4 position;
+layout (location = 1) in vec4 color;
+layout (location = 2) in vec2 texCoord;
 
 varying vec4 v_color;
 varying vec2 v_texCoord;
