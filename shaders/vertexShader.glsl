@@ -5,7 +5,7 @@ attribute vec4 color;
 attribute vec2 texCoord;
 
 varying vec4 v_color;
-varying vec2 v_tex;
+varying vec2 v_texCoord;
 
 //uniform mat4 transform;
 uniform mat4 move;
@@ -26,7 +26,7 @@ void main()
                           0, 0, 1, 0,
                           0, 0, 0,  1);
     
-    v_tex = texCoord;
+    v_texCoord = texCoord;
     v_color = color;
     gl_Position = projection* view * transform * position;
 }

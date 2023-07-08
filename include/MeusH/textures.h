@@ -1,8 +1,10 @@
+#pragma once
 #ifndef TEXTURE_H
 #define TEXTURE_H
-
-#include "shaders.h"
+#define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
+#include <glad/glad.h>
+
 
 class Texture
 {
@@ -18,9 +20,6 @@ public:
     glGenTextures(1, &this->id);
     glBindTexture(tipo, this->id);
 
-    glTexParameteri(tipo, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(tipo, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
     if (data)
     {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, this->width, this->height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
@@ -28,14 +27,14 @@ public:
     }else{
         std::cout << "ERROR::CARREGAMENTO DE TEXTURA FALHOU\n";
     }
-    
-    glActiveTexture(0);
-    glBindTexture(tipo, 0);
+    glTexParameteri(tipo, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(tipo, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
     stbi_image_free(data);
     }
 
-    ~Texture(){
-        glDeleteTextures(11, &this->id);
+    void Apagar(){
+        glDeleteTextures(1, &this->id);
     }
 
     unsigned int getId() const{ return this->id; }

@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef MATRIX_MY
 #define MATRIX_MY
 #include<cmath>

@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef MODELS
+#define MODELS
+
 #include"shaders.h"
 #include"textures.h"
 
@@ -17,3 +22,5 @@ Models::Models(/* args */)
 Models::~Models()
 {
 }
+
+#endif

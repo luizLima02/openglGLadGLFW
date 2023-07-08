@@ -1,0 +1,10 @@
+{
+    "makefile.makePath": "mingw32-make.exe",
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "d:\\Codigos\\openglGLadGLFW",
+            "binaryPath": "d:\\Codigos\\openglGLadGLFW\\main.exe",
+            "binaryArgs": []
+        }
+    ]
+}

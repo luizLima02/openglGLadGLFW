@@ -1,14 +1,4 @@
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-/*modelos*/
-#include <MeusH/shaders.h>
-#include <MeusH/textures.h>
-#include <MeusH/models.h>
-#define STB_IMAGE_IMPLEMENTATION
-#include <MeusH/stb_image.h>
-
-#include <MeusH/matrix_my.h>
-#include <MeusH/camera.h>
+#include <MeusH/libs.h>
 #include <string.h>
 #include <stdlib.h>
 #include <cmath>
@@ -23,16 +13,20 @@ void processInput(GLFWwindow *window);
 unsigned int SCR_WIDTH = 800;
 unsigned int SCR_HEIGHT = 600;
 
+unsigned int VBO = 0;
+unsigned int VArray = 0;
+
 float angle = 0.0; 
 float deltaTime = 0.0f;	// Time between current frame and last frame
 float lastFrame = 0.0f; // Time of last frame
 //
 // camera
-Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+Camera camera(glm::vec3(0.0f, -0.1f, 3.0f));
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
 
+//Texture tex("Textures/wall.jpg", GL_TEXTURE_2D);
 
 
  GLFWwindow* init(unsigned int WIDTH, unsigned int HEIGHT, const char* name){
@@ -48,20 +42,52 @@ bool firstMouse = true;
     return window;   
  }
 
-unsigned int configScene(Shader prog){
-    //cria a imagem e carrega para a placa de video
-    int width, height, nrChannels;   
-    unsigned char *data = stbi_load("Textures/wall.jpg", &width, &height, &nrChannels, 0);
-    unsigned int texture;
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-    glGenerateMipmap(GL_TEXTURE_2D);
-    stbi_image_free(data);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+/*unsigned int*/void configScene(Shader prog){
     
-    //Texture texture_0("Textures/wall.jpg", GL_TEXTURE_2D);
+    
+    Vertex verticesTri[] = {
+    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+     0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+
+    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+     0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+    };
     float coordTriangle[] = {
             // positions      //coordenadas
     -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
@@ -107,11 +133,30 @@ unsigned int configScene(Shader prog){
     -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
            
 };
+    int verticesInd[] = {
+        0,1,2,
+        3,4,5,
+        6,7,8,
+        9,10,11,
+        12,13,14,
+        15,16,17,
+        18,19,20,
+        21,22,23,
+        24,25,26,
+        27,28,29,
+        30,31,32,
+        33,34,35
+    };
 
-    unsigned int VBO = 0;
+    //unsigned int vtxBuffer = 0;
+    glGenBuffers(1, &VArray);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, VArray);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(verticesInd), verticesInd, GL_STATIC_DRAW);
+
+    //unsigned int VBO = 0;
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(coordTriangle), coordTriangle, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(verticesTri), verticesTri, GL_STATIC_DRAW);
 
     auto position = prog.getAttrib("position");//glGetAttribLocation(prog.ID, "position");
     glVertexAttribPointer(position, 
@@ -134,10 +179,12 @@ unsigned int configScene(Shader prog){
 
 
     prog.use();
-    prog.setInt("texture1", 0);
+    prog.setInt("texture_1", 0);
+    prog.setFloat("uPixelSize", 5.0f);
+    prog.set2dVec("uTextureSize", (float)256, (float)256);
 
-    glActiveTexture(GL_TEXTURE0); // activate the texture unit first before binding texture
-    glBindTexture(GL_TEXTURE_2D, texture);
+
+    //tex.bind(GL_TEXTURE1, GL_TEXTURE_2D);
     //texture_0.bind(0,GL_TEXTURE_2D); 
     glViewport(0,0, SCR_WIDTH, SCR_HEIGHT);
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -145,7 +192,7 @@ unsigned int configScene(Shader prog){
     glEnable(GL_DEPTH_TEST);
     glBlendFunc(GL_SRC0_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    return VBO;
+    //return VBO;
 }
 
 
@@ -174,8 +221,8 @@ void draw(Shader prog, GLFWwindow* window){
     // ------
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, (void*)0);
+    //glDrawArrays(GL_TRIANGLES, 0, 36);
     // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
     // -------------------------------------------------------------------------------
     glfwSwapBuffers(window);
@@ -209,8 +256,11 @@ int main()
     }    
     //inicializacoes finalizadas
 
-    Shader prog("shaders/vertexShader.glsl", "shaders/fragmentShader.glsl");   
-    unsigned int VBO = configScene(prog);
+    Shader prog("shaders/vertexShader.glsl", "shaders/fragmentShader.glsl");  
+
+    Texture textt("Textures/wall.jpg", GL_TEXTURE_2D);
+    textt.bind(GL_TEXTURE0, GL_TEXTURE_2D); 
+    /*unsigned int VBO = */configScene(prog);
 
     // render loop
     // -----------
@@ -219,6 +269,7 @@ int main()
         draw(prog, window);
     }
     glDeleteBuffers(1, &VBO);
+    textt.Apagar();
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------
     glfwTerminate();
@@ -259,8 +310,9 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
 
     lastX = xpos;
     lastY = ypos;
+    //std::cout << yoffset << "\n";
 
-    camera.ProcessMouseMovement(xoffset, yoffset);
+    camera.ProcessMouseMovement(xoffset, yoffset/*0.0f*/);
 }
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called
