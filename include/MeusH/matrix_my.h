@@ -12,7 +12,6 @@
 
 glm::mat4 createRotation(glm::mat4 matriz, float angle, float v1, float v2, float v3){
     glm::mat4 rotacion = glm::rotate(matriz, angle, glm::vec3(v1, v2, v3));
-
     return rotacion;
 }
 

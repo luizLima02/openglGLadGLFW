@@ -1,4 +1,4 @@
-#include <MeusH/libs.h>
+#include <MeusH/game.h>
 #include <string.h>
 #include <stdlib.h>
 #include <cmath>
@@ -42,9 +42,9 @@ bool firstMouse = true;
     return window;   
  }
 
-/*unsigned int*/void configScene(Shader prog){
+ void configScene(Shader prog){
     
-    
+    /*
     Vertex verticesTri[] = {
     -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 0.0f,
      0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
@@ -147,7 +147,7 @@ bool firstMouse = true;
         30,31,32,
         33,34,35
     };
-    /*
+    
     //unsigned int vtxBuffer = 0;
     glGenBuffers(1, &VArray);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, VArray);
@@ -234,48 +234,50 @@ int main()
     textt.bind(GL_TEXTURE0, GL_TEXTURE_2D); 
 
     //Inicia a mesh
+    /*
     Vertex verticesTri[] = {
-    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 0.0f,
-     0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
-     0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
-     0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
-    -0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
+        //ok
+    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f, 0.0f, 0.0f,
+     0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f, 1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f, 1.0f, 1.0f,
+     0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f, 1.0f, 1.0f,
+    -0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f, 0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f, 0.0f, 0.0f,
+    //ok
+    -0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f, 0.0f, 0.0f,
+     0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f, 1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f, 1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f, 1.0f, 1.0f,
+    -0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f, 0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f, 0.0f, 0.0f,
+    //ok
+    -0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f, 1.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f, 1.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f, 0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f, 0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f, 0.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f, 1.0f, 0.0f,
 
-    -0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
-     0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
-     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
-    -0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
+     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f, 1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f, 1.0f, 1.0f,
+     0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f, 0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f, 0.0f, 1.0f,
+     0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f, 0.0f, 0.0f,
+     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f, 1.0f, 0.0f,
 
-    -0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
-    -0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f, 0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f, 1.0f, 1.0f,
+     0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f, 1.0f, 0.0f,
+     0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f, 1.0f, 0.0f,
+    -0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f, 0.0f, 0.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f, 0.0f, 1.0f,
 
-     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
-     0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
-     0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
-     0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
-     0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
-     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
-
-    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
-     0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
-     0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
-     0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
-    -0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
-
-    -0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f,
-     0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 1.0f,
-     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 0.0f,
-    -0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f, 1.0f
+    -0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f, 0.0f, 1.0f,
+     0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f, 1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f, 1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f, 1.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f, 0.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f, 1.0f,1.0f,1.0f, 0.0f, 1.0f
     };
     unsigned int verticesInd[] = {
         0,1,2,
@@ -293,14 +295,19 @@ int main()
     };
     unsigned nrOfVertices = sizeof(verticesTri) / sizeof(Vertex);
     unsigned nrOfIndices = sizeof(verticesInd) / sizeof(unsigned int);
-
-    Mesh teste(verticesTri, nrOfVertices, verticesInd, nrOfIndices);
+    */
+    Quad temQ = Quad();
+    Mesh quadrado(&temQ); //= Create_quad(0.0,0.0,0.0, 1.0, 1.0,1.0,1.0);
+    Quad temQ2 = Quad();
+    Mesh quadrado2(&temQ2); 
+    //Mesh teste(verticesTri, nrOfVertices, verticesInd, nrOfIndices);
     /////////////////
     configScene(prog);
 
     // render loop
     // -----------
     //draw
+    auto mover = createTranslation(quadrado.getTransf(), 1.0f,0,1.0f);
     while (!glfwWindowShouldClose(window))
     {
         //draw(prog, window);
@@ -313,20 +320,25 @@ int main()
 
         //inputs
         processInput(window);
-
         // pass projection matrix to shader (note that in this case it could change every frame)
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
         prog.setMat4("projection", projection);
-
-            // camera/view transformation
+        // camera/view transformation
         glm::mat4 view = camera.GetViewMatrix();
         prog.setMat4("view", view);
         
-        //glUniform4f(vertexColorLoc, 0.0f, greenValue, 0.0f, 1.0f);
+        prog.set3dVec("lightDirection", 0,0,-1);
+        prog.set3dVec("lightColor", 1,1,1);
+        prog.set3dVec("lightpos", 0.25, 0.0, 0.5);
+        prog.set3dVec("campos", 5, 5, 5);
         // render
         // ------
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        teste.Render(&prog, 0);
+        
+        quadrado.Render(&prog, 0, mover);
+        quadrado2.Render(&prog, 0);
+        //teste.Render(&prog, 0);
+        
         //glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, (void*)0);
         //glDrawArrays(GL_TRIANGLES, 0, 36);
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
@@ -337,7 +349,9 @@ int main()
     }
     glDeleteBuffers(1, &VBO);
     textt.Apagar();
-    teste.~Mesh();
+    quadrado.~Mesh();
+    //quadrado2.~Mesh();
+    //teste.~Mesh();
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------
     glfwTerminate();
