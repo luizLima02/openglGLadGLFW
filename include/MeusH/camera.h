@@ -15,18 +15,19 @@ enum CAMERA_MOV{
 };
 
 //valores default da camera
-const float YAW             = -90.f;
-const float PITCH           = 0.0f;
-const float SPEED           = 2.5f;
+const float YAW             = -92.1f;
+const float PITCH           = -29.2f;
+const float SPEED           = 1.f;
 const float SENSIBILIDADE   = 0.1f;
 const float ZOOM            = 45.0f;
 
 class Camera
 {
 public:
-        // camera Attributes
+    // camera Attributes
     glm::vec3 Position;
     glm::vec3 Front;
+    glm::vec3 FixedFront;
     glm::vec3 Up;
     glm::vec3 Right;
     glm::vec3 WorldUp;
@@ -43,14 +44,28 @@ public:
         WorldUp = up;
         Yaw = yaw;
         Pitch = pitch;
+        FixedFront = Front;
         updateCameraVector();
     }
+
+    Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3 ffront = glm::vec3(0.0f, 0.0f, -1.0f) ,float yaw = YAW, float pitch = PITCH) : Front(glm::vec3(0.00793451f, -0.416281f, -0.909202f)), MovementSpeed(SPEED), MouseSensitivity(SENSIBILIDADE), Zoom(ZOOM)
+    {
+        Position = position;
+        WorldUp = up;
+        Up = up;
+        Yaw = yaw;
+        Pitch = pitch;
+        FixedFront = ffront;
+        updateCameraVector();
+    }
+
     Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch) : Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSIBILIDADE), Zoom(ZOOM)
     {
         Position = glm::vec3(posX, posY, posZ);
         WorldUp = glm::vec3(upX, upY, upZ);
         Yaw = yaw;
         Pitch = pitch;
+        FixedFront = Front;
         updateCameraVector();
     }
      glm::mat4 GetViewMatrix()
@@ -61,11 +76,11 @@ public:
     // processes input received from any keyboard-like input system. Accepts input parameter in the form of camera defined ENUM (to abstract it from windowing systems)
     void ProcessKeyboard(CAMERA_MOV direction, float deltaTime)
     {
-        float velocity = MovementSpeed * deltaTime;
+        float velocity = MovementSpeed /* deltaTime*/;
         if (direction == FRENTE)
-            Position += Front * velocity;
+            Position += FixedFront * velocity;
         if (direction == TRAS)
-            Position -= Front * velocity;
+            Position -= FixedFront * velocity;
         if (direction == ESQUERDA)
             Position -= Right * velocity;
         if (direction == DIREITA)
@@ -75,11 +90,14 @@ public:
     // processes input received from a mouse input system. Expects the offset value in both the x and y direction.
     void ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch = true)
     {
+        /*
         xoffset *= MouseSensitivity;
         yoffset *= MouseSensitivity;
 
         Yaw   += xoffset;
         Pitch += yoffset;
+        std::cout << "Yaw " << Yaw << "\n";
+        std::cout << "Pitch " << Pitch << "\n";
 
         // make sure that when pitch is out of bounds, screen doesn't get flipped
         if (constrainPitch)
@@ -89,18 +107,20 @@ public:
             if (Pitch < -89.0f)
                 Pitch = -89.0f;
         }
-
+*/
         // update Front, Right and Up Vectors using the updated Euler angles
         updateCameraVector();
     }
     // processes input received from a mouse scroll-wheel event. Only requires input on the vertical wheel-axis
     void ProcessMouseScroll(float yoffset)
     {
+        /*
         Zoom -= (float)yoffset;
         if (Zoom < 1.0f)
             Zoom = 1.0f;
         if (Zoom > 45.0f)
             Zoom = 45.0f;
+        */    
     }
    
 private:

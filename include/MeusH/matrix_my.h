@@ -25,6 +25,14 @@ glm::mat4 createScale(glm::mat4 matriz, float factor){
     glm::mat4 scale = glm::scale(matriz, glm::vec3(factor, factor, factor));
     return scale;
 }
+glm::mat4 createScaleVar(glm::mat4 matriz, float factorX, float factorY, float factorZ){
+    glm::mat4 scale = glm::scale(matriz, glm::vec3(factorX, factorY, factorZ));
+    return scale;
+}
+glm::mat4 createScaleXZ(glm::mat4 matriz, float factor){
+    glm::mat4 scale = glm::scale(matriz, glm::vec3(factor, 1, factor));
+    return scale;
+}
 
 glm::mat4 createPerspective(float fovy, float aspect, float near, float far){
     glm::mat4 perspect = glm::perspective(glm::radians(fovy), aspect, near, far);

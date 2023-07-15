@@ -5,12 +5,13 @@ uniform sampler2D texture_1;
 uniform float uPixelSize;
 uniform vec2  uTextureSize;
 
-varying vec4 v_color;
 varying vec2 v_texCoord;
 
 varying vec3 v_normal;
 uniform vec3 lightDirection;
 uniform vec3 lightColor;
+
+uniform bool chegada;
 
 varying vec3 pointToLight;
 varying vec3 pointToCam;
@@ -37,12 +38,20 @@ void main() {
   vec2 pixelCoord = floor(coord / uPixelSize) * uPixelSize;
   vec2 textureCoord = (pixelCoord + 0.3 * uPixelSize) / uTextureSize;
   
-  vec3 texColor = texture2D(texture_1, textureCoord).rgb;//texture2D(texture_1, textureCoord).rgb;
-  //saida
-  frag_color.rgb = 0.2*lightColor*texColor;
-  frag_color.rgb += 0.2*lightColor*lightd*texColor;    
-  frag_color.rgb += 0.5*lightColor*lightp*texColor;
-  frag_color.rgb += lightColor*pow(lighte, 500.0)*texColor;  
-
-  frag_color.a = texture(texture_1, textureCoord).a; //* v_color /*vec4(v_color, 1.0f)*/;
+  if(chegada){
+    vec4 vcolor = vec4(1.0, 1.0, 0.0, 1.0);
+    frag_color.rgb = 0.2*lightColor*vcolor.rgb;
+    frag_color.rgb += 0.2*lightColor*lightd*vcolor.rgb;    
+    frag_color.rgb += 0.5*lightColor*lightp*vcolor.rgb;
+    frag_color.rgb += lightColor*pow(lighte, 500.0)*vcolor.rgb;  
+    frag_color.a = vcolor.a;
+  }else{
+    vec3 texColor = texture2D(texture_1, v_texCoord).rgb;
+    //saida
+    frag_color.rgb = 0.2*lightColor*texColor;
+    frag_color.rgb += 0.2*lightColor*lightd*texColor;    
+    frag_color.rgb += 0.5*lightColor*lightp*texColor;
+    frag_color.rgb += lightColor*pow(lighte, 500.0)*texColor;  
+    frag_color.a = texture(texture_1, v_texCoord).a;
+  }
 };
