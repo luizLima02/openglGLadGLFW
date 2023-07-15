@@ -1,5 +1,5 @@
 output:	main.o glad.o
-	g++ -Wall main.o glad.o -o main.exe -Llib-mingw-w64 -lglfw3 -lgdi32 -lopengl32
+	g++ -Wall main.o glad.o -o main -Llib-mingw-w64 -lglfw3 -lgdi32 -lopengl32
 	python clear.py
 
 main.o:	src/main.cpp
