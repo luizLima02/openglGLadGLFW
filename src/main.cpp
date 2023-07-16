@@ -10,10 +10,9 @@ GLFWwindow* window;
 unsigned int SCR_WIDTH = 800;
 unsigned int SCR_HEIGHT = 600;
 //luz
-float incremento = 0.1;
-glm::vec3 lightPos = glm::vec3(-0.5, 5, 0);
+float incremento = 0.01;
+glm::vec3 lightPos = glm::vec3(-1, 5, 0);
 //animacao chegada
-float direcaoCubo = 0.03f;
 float counter = 0;
 //player pos
 int playerX = 4;
@@ -256,64 +255,61 @@ int main()
    
     while (!glfwWindowShouldClose(window))
     {
-        if(state == GAME){
-        //prog.use();
-
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame; 
-
-        if(shouldPause){
-            pauseMove += deltaTime;
-            if(pauseMove >= 0.2){
-                pauseMove = 0;
-                shouldPause = false;
+        if(state == GAME){
+            if(shouldPause){
+                pauseMove += deltaTime;
+                if(pauseMove >= 0.2){
+                    pauseMove = 0;
+                    shouldPause = false;
+                }
             }
-        }
-        //inputs
-        processInput(window, state);
-        // pass projection matrix to shader (note that in this case it could change every frame)
-        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-        glm::mat4 view = camera.GetViewMatrix();
-        for(auto&i: shaders){
-            i->setMat4("projection", projection);
-            i->setMat4("view", view);
-            i->set3dVec("lightDirection", 0.3,1,0);
-            i->set3dVec("lightColor", 1,1,1);
-            i->set3dVec("lightpos", lightPos.x, lightPos.y, lightPos.z);
-            i->set3dVec("campos", 5, 5, 5);
-        }
-        // render
-        // ------
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        //Chegada
-        shaders[SHADER_CORE]->setBool("chegada", true);
-        modelos[CHEGADA_MODEL]->Rotate(0.1f, 0, 1.f, 0);
-        modelos[CHEGADA_MODEL]->Mover(0, direcaoCubo, 0);
-        modelos[CHEGADA_MODEL]->render(shaders[SHADER_CORE]);
-        shaders[SHADER_CORE]->setBool("chegada", false);
-        //Chao
-        modelos[FLOOR_MODEL]->render(shaders[SHADER_CORE]);
-        //Player
-        modelos[PLAYER_MODEL]->render(shaders[SHADER_CORE]);
+            //inputs
+            processInput(window, state);
+            // pass projection matrix to shader (note that in this case it could change every frame)
+            glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+            glm::mat4 view = camera.GetViewMatrix();
+            for(auto&i: shaders){
+                i->setMat4("projection", projection);
+                i->setMat4("view", view);
+                i->set3dVec("lightDirection", 1,1,0);
+                i->set3dVec("lightColor", 1,1,1);
+                i->set3dVec("lightpos", lightPos.x, lightPos.y, lightPos.z);
+                i->set3dVec("campos", 5, 5, 5);
+            }
+            // render
+            // ------
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            //Chegada
+            shaders[SHADER_CORE]->setBool("chegada", true);
+            modelos[CHEGADA_MODEL]->Rotate(deltaTime, 0, 1.f, 0);
+            //modelos[CHEGADA_MODEL]->Mover(0, direcaoCubo, 0);
+            modelos[CHEGADA_MODEL]->render(shaders[SHADER_CORE]);
+            shaders[SHADER_CORE]->setBool("chegada", false);
+            //Chao
+            modelos[FLOOR_MODEL]->render(shaders[SHADER_CORE]);
+            //Player
+            modelos[PLAYER_MODEL]->render(shaders[SHADER_CORE]);
 
-        for(auto&i: paredes){
-            i->render(shaders[SHADER_CORE]);
-        }
-        counter += deltaTime;
-        lightPos.x += incremento;
-        if(counter >= 1.0f){
-            direcaoCubo *= -1;
-            incremento *=-1;
-            counter = 0;
-        }
-        if(mapaColisao[playerY][playerX] == 2){
-            state = END;
-        }
-        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
-        glfwSwapBuffers(window);
-        glfwPollEvents();
+            for(auto&i: paredes){
+                i->render(shaders[SHADER_CORE]);
+            }
+            counter += deltaTime;
+            lightPos.x += incremento;
+            if(counter >= 3.0f){
+                incremento *=-1;
+                counter = 0;
+            }
+            
+            if(mapaColisao[playerY][playerX] == 2){
+                state = END;
+            }
+            // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
+            // -------------------------------------------------------------------------------
+            glfwSwapBuffers(window);
+            glfwPollEvents();
         }else{
             processInput(window, state);
             //glfwSwapBuffers(window);
@@ -400,34 +396,6 @@ void processInput(GLFWwindow *window, GAMESTATE state)
     }
 }
 
-void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
-{
-    float xpos = static_cast<float>(xposIn);
-    float ypos = static_cast<float>(yposIn);
-
-    if (firstMouse)
-    {
-        lastX = xpos;
-        lastY = ypos;
-        firstMouse = false;
-    }
-
-    float xoffset = xpos - lastX;
-    float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
-
-    lastX = xpos;
-    lastY = ypos;
-    //std::cout << yoffset << "\n";
-
-    camera.ProcessMouseMovement(xoffset, yoffset/*0.0f*/);
-}
-
-// glfw: whenever the mouse scroll wheel scrolls, this callback is called
-// ----------------------------------------------------------------------
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
-{
-    camera.ProcessMouseScroll(static_cast<float>(yoffset));
-}
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
 // ---------------------------------------------------------------------------------------------
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
